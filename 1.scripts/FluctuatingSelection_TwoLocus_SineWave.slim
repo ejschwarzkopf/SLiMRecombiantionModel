@@ -1,0 +1,114 @@
+// set up a simulation with two mutations at intermediate frequency with fitnesses that fluctuate according to a sine wave
+initialize() {
+	// define population size (# of individuals or 1/2 # of chromosomes)
+	if(!exists("N")){
+		defineConstant("N", 10000);
+	}
+	// define position of the first mutation that will have fluctuating selection
+	if(!exists("POS_1")){
+		defineConstant("POS_1", 1e4);
+	}
+	// define upper bound of the selection coefficient of the first mutation
+	if(!exists("HI_1")){
+		defineConstant("HI_1", 0.01);
+	}
+	// define the amplitude (height) of the sine wave of the first mutation
+	if(!exists("AMPLITUDE_1")){
+		defineConstant("AMPLITUDE_1", (HI_1 - ((1/(1+HI_1))-1)) / 2 );
+	}
+	// define the ordinary frequency (how many generations it takes for a cycle) of the sine wave of the first mutation
+	if(!exists("ORD_FREQUENCY_1")){
+		defineConstant("ORD_FREQUENCY_1", 1/3);
+	}
+	// define the phase (y when x=0) of the sine wave of the first mutation
+	if(!exists("PHASE_1")){
+		defineConstant("PHASE_1", 0);
+	}
+	// define the starting frequency of the first mutation
+	if(!exists("STARTFREQ_1")){
+		defineConstant("STARTFREQ_1", N);
+	}
+	// define position of the first mutation that will have fluctuating selection
+	if(!exists("POS_2")){
+		defineConstant("POS_2", 1e4+5e3);
+	}
+	// define upper bound of the selection coefficient of the first mutation
+	if(!exists("HI_2")){
+		defineConstant("HI_2", 0.01);
+	}
+	// define the amplitude (height) of the sine wave of the first mutation
+	if(!exists("AMPLITUDE_2")){
+		defineConstant("AMPLITUDE_2", (HI_2 - ((1 / (1 + HI_2)) - 1)) / 2 );
+	}
+	// define the ordinary frequency (how many generations it takes for a cycle) of the sine wave of the first mutation
+	if(!exists("ORD_FREQUENCY_2")){
+		defineConstant("ORD_FREQUENCY_2", 1/3);
+	}
+	// define the phase (y when x=0) of the sine wave of the first mutation
+	if(!exists("PHASE_2")){
+		defineConstant("PHASE_2", 0.6);
+	}
+	// define the starting frequency of the first mutation
+	if(!exists("STARTFREQ_2")){
+		defineConstant("STARTFREQ_2", N);
+	}
+	initializeMutationRate(1e-7);
+	
+	// m1 mutation type: neutral
+	initializeMutationType("m1", 0.5, "f", 0.0);
+	
+	// m2 and m3 mutation types: fluctuating selection
+	initializeMutationType("m2", 0.5, "f", 0.0);
+	m2.color == "red";
+	initializeMutationType("m3", 0.5, "f", 0.0);
+	m3.color == "green";
+	
+	// g1 genomic element type: uses m1 for all mutations
+	initializeGenomicElementType("g1", m1, 1.0);
+	
+	// uniform chromosome of length with uniform recombination
+	initializeGenomicElement(g1, 0, 2e4);
+	initializeRecombinationRate(1e-8);
+}
+
+// create a population of N individuals
+1 {
+	sim.addSubpop("p1", N);
+}
+
+10000 late() {
+	// sample genomes to recieve the first (m2) mutation
+	target1 = sample(p1.genomes, asInteger(STARTFREQ_1));
+	// place the m2 mutations
+	target1.addNewDrawnMutation(m2, POS_1);
+	// sample genomes to recieve the first (m2) mutation
+	target2 = sample(p1.genomes, asInteger(STARTFREQ_2));
+	// place the m3 mutations
+	target2.addNewDrawnMutation(m3, POS_2);
+}
+
+late(){
+	// set the fitness of m2 mutatios based on its sine wave
+	mut1 = sim.mutations[sim.mutations.mutationType == m2];
+	mut1.setSelectionCoeff((HI_1 - AMPLITUDE_1) + AMPLITUDE_1*sin(2*PI*ORD_FREQUENCY_1*sim.generation+PHASE_1));
+	// set the fitness of m3 mutatios based on its sine wave
+	mut2 = sim.mutations[sim.mutations.mutationType == m3];
+	mut2.setSelectionCoeff((HI_2 - AMPLITUDE_2) + AMPLITUDE_2*sin(2*PI*ORD_FREQUENCY_2*sim.generation+PHASE_2));
+	// print diagnosis info every 1000 generations
+//	if(sim.generation % 1000 == 0){
+//		count1=sum(p1.genomes.mutations.mutationType == m2);
+//		count2=sum(p1.genomes.mutations.mutationType == m3);
+//		catn("m2 selection coeff: " + mut1.selectionCoeff);
+//		catn("m2 exp select coeff: " + AMPLITUDE_1*sin(2*PI*ORD_FREQUENCY_1*sim.generation+PHASE_1));
+//		catn("m3 selection coeff: " + mut2.selectionCoeff);
+//		catn("m3 exp select coeff: " + AMPLITUDE_2*sin(2*PI*ORD_FREQUENCY_2*sim.generation+PHASE_2));
+//		catn("Mean count: " + mean(c(count1, count2)));
+//		catn("Difference: " + (count1 - count2));
+//	}
+}
+
+
+// output all fixed mutations at end
+
+20000 late() { p1.outputVCFSample(100); }
+
