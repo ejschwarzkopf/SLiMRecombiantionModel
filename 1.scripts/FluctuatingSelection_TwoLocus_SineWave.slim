@@ -52,6 +52,10 @@ initialize() {
 	if(!exists("STARTFREQ_2")){
 		defineConstant("STARTFREQ_2", N);
 	}
+	// define the recombiantion rate
+	if(!exists("R"){
+		defineConstant("R", 1e-8);
+	}
 	initializeMutationRate(1e-7);
 	
 	// m1 mutation type: neutral
@@ -68,7 +72,7 @@ initialize() {
 	
 	// uniform chromosome of length with uniform recombination
 	initializeGenomicElement(g1, 0, 2e4);
-	initializeRecombinationRate(1e-8);
+	initializeRecombinationRate(R);
 }
 
 // create a population of N individuals

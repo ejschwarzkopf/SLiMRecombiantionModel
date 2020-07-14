@@ -1,16 +1,32 @@
 #!/bin/bash
-#SBATCH --job-name=ParameterRun1
+#SBATCH --job-name=SLiMRun1
 #SBATCH --partition=popgenom,kamiak,cas,cahnrs
-#SBATCH --output=/data/cornejo/projects/e.jimenezschwarzkop/LDModel/1.scripts/1.log/ParameterRun1.out
-#SBATCH --error=/data/cornejo/projects/e.jimenezschwarzkop/LDModel/1.scripts/1.log/ParameterRun1.err
+#SBATCH --output=/data/cornejo/projects/e.jimenezschwarzkop/SLiMRecombinationModel/1.scripts/1.log/SLiMRun1.out
+#SBATCH --error=/data/cornejo/projects/e.jimenezschwarzkop/SLiMRecombinationModel/1.scripts/1.log/SLiMRun1.err
 #SBATCH --time=7-00:00:00
 #SBATCH --nodes=1
-#SBATCH --workdir="/data/cornejo/projects/e.jimenezschwarzkop/LDModel"
-#SBATCH --array=1-1000
+#SBATCH --workdir="/data/cornejo/projects/e.jimenezschwarzkop/SLiMRecombinationModel"
+#SBATCH --array=1-1
 
 i=$SLURM_ARRAY_TASK_ID
 
-/data/cornejo/projects/SLiM/slim SLiMscript -s $i --flags > 2.SLiM_output/ModelName_$i
+# Input file is tab delimited in the following format:
+# N	POS_1	POS_2	HI_1	HI_2	ORD_FREQUENCY_1	ORD_FREQUENCY_2	PHASE_1	PHASE_2	STARTFREQ_1	STARTFREQ_2 R
+
+N=$(awk 'NR=='$i' {print}' 6.aux/ParametersTestRun.txt | cut -f 1) 
+POS_1=$(awk 'NR=='$i' {print}' 6.aux/ParametersTestRun.txt | cut -f 2)
+POS_2=$(awk 'NR=='$i' {print}' 6.aux/ParametersTestRun.txt | cut -f 3)
+HI_1=$(awk 'NR=='$i' {print}' 6.aux/ParametersTestRun.txt | cut -f 4)
+HI_2=$(awk 'NR=='$i' {print}' 6.aux/ParametersTestRun.txt | cut -f 5)
+ORD_FREQUENCY_1=$(awk 'NR=='$i' {print}' 6.aux/ParametersTestRun.txt | cut -f 6)
+ORD_FREQUENCY_2=$(awk 'NR=='$i' {print}' 6.aux/ParametersTestRun.txt | cut -f 7)
+PHASE_1=$(awk 'NR=='$i' {print}' 6.aux/ParametersTestRun.txt | cut -f 8)
+PHASE_2=$(awk 'NR=='$i' {print}' 6.aux/ParametersTestRun.txt | cut -f 9)
+STARTFREQ_1=$(awk 'NR=='$i' {print}' 6.aux/ParametersTestRun.txt | cut -f 10)
+STARTFREQ_2=$(awk 'NR=='$i' {print}' 6.aux/ParametersTestRun.txt | cut -f 11)
+R=$(awk 'NR=='$i' {print}' 6.aux/ParametersTestRun.txt | cut -f 12)
+
+/data/cornejo/projects/SLiM/slim -s $i -d N=$N -d POS_1=$POS_1 -d POS_2=$POS_2 -d HI_1=$HI_1 -d HI_2=$HI_2 -d ORD_FREQUENCY_1=$ORD_FREQUENCY_1 -d ORD_FREQUENCY_2=$ORD_FREQUENCY_2 -d PHASE_1=$PHASE_1 -d PHASE_2=$PHASE_2 -d STARTFREQ_1=$N -d STARTFREQ_2=$N -d R=$R 1.scripts/FluctuatingSelection_TwoLocus_SineWave.slim  > 2.model_output/Test_Model_${i}.vcf
 
 # Extract the flags from a file with all parameter combinations
 # Possible flags:
