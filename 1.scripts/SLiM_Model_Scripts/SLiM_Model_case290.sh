@@ -1,18 +1,21 @@
 #!/bin/bash
-#SBATCH --job-name=SLiMRun1
+#SBATCH --job-name=SLiMRun290
 #SBATCH --partition=popgenom,kamiak,cas,cahnrs
-#SBATCH --output=/data/cornejo/projects/e.jimenezschwarzkop/SLiMRecombinationModel/1.scripts/1.log/SLiMRun290_%a.out
-#SBATCH --error=/data/cornejo/projects/e.jimenezschwarzkop/SLiMRecombinationModel/1.scripts/1.log/SLiMRun290_%a.err
+#SBATCH --output=/data/cornejo/projects/e.jimenezschwarzkop/SLiMRecombinationModel/1.scripts/1.log/SLiMRun290.out
+#SBATCH --error=/data/cornejo/projects/e.jimenezschwarzkop/SLiMRecombinationModel/1.scripts/1.log/SLiMRun290.err
 #SBATCH --time=7-00:00:00
 #SBATCH --nodes=1
 #SBATCH --workdir="/data/cornejo/projects/e.jimenezschwarzkop/SLiMRecombinationModel"
 #SBATCH --array=1-500
 
+#Run this in the 1.scripts folder to make the scripts:
+#for i in `seq 1 900`; do sed 's/290/'$i'/g' SLiM_Models.sh | sed 's/SLiM_Parameters.txt/SLiM_Parameters.txt/g' > SLiM_Model_Scripts/SLiM_Model_case$i.sh; done
+
 n=$SLURM_ARRAY_TASK_ID
 
 i=$((290+1))
 
-directory=$(echo '/scratch/'$(lsworkspace -v | awk 'NR==1 {print}')'/2.model_output')
+directory=$(echo $(lsworkspace -v | tail -n 4 | awk 'NR==1 {print}')'/2.model_output')
 
 if [ $n -eq 1 ]
 then
@@ -39,7 +42,7 @@ R=$(awk 'NR=='$i' {print}' 6.aux/SLiM_Parameters.txt | cut -f 12)
 
 /data/cornejo/projects/SLiM/slim -s $seed -d N=$N -d POS_1=$POS_1 -d POS_2=$POS_2 -d HI_1=$HI_1 -d HI_2=$HI_2 -d ORD_FREQUENCY_1=$ORD_FREQUENCY_1 -d ORD_FREQUENCY_2=$ORD_FREQUENCY_2 -d PHASE_1=$PHASE_1 -d PHASE_2=$PHASE_2 -d STARTFREQ_1=$N -d STARTFREQ_2=$N -d R=$R 1.scripts/FluctuatingSelection_TwoLocus_SineWave.slim  > 2.model_output/Test_Model_case290_${n}.vcf
 
-directory=$(echo '/scratch/'$(lsworkspace -v | awk 'NR==1 {print}')'/2.model_output')
+directory=$(echo $(lsworkspace -v | tail -n 4 | awk 'NR==1 {print}')'/2.model_output')
 
 mv 2.model_output/Test_Model_case290_${n}.vcf "${directory}/case_290/"
 

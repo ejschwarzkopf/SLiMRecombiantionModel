@@ -25,8 +25,8 @@ do
 	then
 	        currentscratch=$(mkworkspace)
 	else
-	        currentscratch=$(lsworkspace -v | awk 'NR==1 {print}')
-	        currentscratch=$(echo '/scratch/'$currentscratch)
+	        currentscratch=$(lsworkspace -v | tail -n 4 | awk 'NR==1 {print}')
+	        currentscratch=$(echo $currentscratch)
 	fi
 
 	# We make a new scratch folder and save its location to 'newscratch.'
