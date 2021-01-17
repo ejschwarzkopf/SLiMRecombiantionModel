@@ -81,14 +81,14 @@ for(i in 1:itercount){
 		}
 	}
 	HS_count<-c(HScount, nrow(table))
-	HS_loci_count<-c(HScount, nrow(table[which((table[,1]>=10 & table[,1]<=12) | (table[,2]>=10 & table[,2]<=12)),]))
+	HS_loci_count<-c(HScount, nrow(table[which((table[,1]>=10 & table[,1]<=15) | (table[,2]>=10 & table[,2]<=15)),]))
 	# Subset by significant hotspots, but keep everything
 	table2<-ogtable[which(ogtable[,9]<0.001),]
 	# Average strength weighted by hotspot length:
 	table2[,11]<-table2[,2]-table2[,1]
 	table2[,12]<-table2[,11]/sum(table2[,11])
 
-	loci_index<-which((table2[,1]>=10 & table2[,1]<=12) | (table2[,2]>=10 & tale2[,2]<=12))
+	loci_index<-which((table2[,1]>=10 & table2[,1]<=15) | (table2[,2]>=10 & tale2[,2]<=15))
 
 	HS_brute_mean<-sum(table2[,3]*table2[,12])
 	HS_relative_mean<-sum((table2[,3]/table2[,6])*table2[,12])
