@@ -83,7 +83,7 @@ for(i in 1:itercount){
 	HS_count<-c(HScount, nrow(table))
 	HS_loci_count<-c(HScount, nrow(table[which((table[,1]>=10 & table[,1]<=12) | (table[,2]>=10 & table[,2]<=12)),]))
 	# Subset by significant hotspots, but keep everything
-	table2<-ogtable[which[,9]<0.001),]
+	table2<-ogtable[which(ogtable[,9]<0.001),]
 	# Average strength weighted by hotspot length:
 	table2[,11]<-table2[,2]-table2[,1]
 	table2[,12]<-table2[,11]/sum(table2[,11])
