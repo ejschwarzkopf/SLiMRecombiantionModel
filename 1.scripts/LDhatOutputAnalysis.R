@@ -82,4 +82,4 @@ OutputTable<-data.frame(Rates_mean_SD_all=Rates_mean_SD_all, Rates_mean_CV_all=R
 
 output_filename<-paste(filetemplate, ".res.summary.txt", sep='')
 
-write.table(OutputTable, filetemplate, quote=FALSE)
+write.table(OutputTable, output_filename, quote=FALSE)
