@@ -72,8 +72,8 @@ for(i in 1:itercount){
 		if(nrow(table)==j){
 			j=0
 		}else{
-			if(table[j,2]<=table[j+1,1]){
-				table[j,2]=table[j+1,2]
+			if(table[j,2]<=table[(j+1),1]){
+				table[j,2]=table[(j+1),2]
 				table = table[-(j+1),]
 			}else{
 				j=j+1
