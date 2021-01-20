@@ -81,7 +81,7 @@ for(i in 1:itercount){
 		}
 	}
 	HS_count<-c(HS_count, nrow(table))
-	HS_loci_count<-c(HS_count, nrow(table[which((table[,1]>=10 & table[,1]<=15) | (table[,2]>=10 & table[,2]<=15)),]))
+	HS_loci_count<-c(HS_loci_count, nrow(table[which((table[,1]>=10 & table[,1]<=15) | (table[,2]>=10 & table[,2]<=15)),]))
 	# Subset by significant hotspots, but keep everything
 	table2<-ogtable[which(ogtable[,9]<0.001),]
 	# Average strength weighted by hotspot length:
@@ -91,23 +91,23 @@ for(i in 1:itercount){
 	loci_index<-which((table2[,1]>=10 & table2[,1]<=15) | (table2[,2]>=10 & table2[,2]<=15))
 
 	if(nrow(table2)!=0){
-		HS_brute_mean<-sum(table2[,3]*table2[,12])
-		HS_relative_mean<-sum((table2[,3]/table2[,6])*table2[,12])
-		HS_loci_brute_mean<-sum(table2[loci_index,3]*table2[loci_index,12])
-		HS_loci_relative_mean<-sum((table2[loci_index,3]/table2[loci_index,6])*table2[loci_index,12])
-		HS_brute_median<-weighted.median(table2[,3], table2[,12])
-		HS_relative_median<-weighted.median((table2[,3]/table2[,6]), table2[,12])
-		HS_loci_brute_median<-weighted.median(table2[loci_index,3], table2[loci_index,12])
-		HS_loci_relative_median<-weighted.median((table2[loci_index,3]/table2[loci_index,6]), table2[loci_index,12])
+		HS_brute_mean<-c(HS_brute_mean, sum(table2[,3]*table2[,12]))
+		HS_relative_mean<-c(HS_relative_mean, sum((table2[,3]/table2[,6])*table2[,12]))
+		HS_loci_brute_mean<-c(HS_loci_brute_mean, sum(table2[loci_index,3]*table2[loci_index,12]))
+		HS_loci_relative_mean<-c(HS_loci_relative_mean, sum((table2[loci_index,3]/table2[loci_index,6])*table2[loci_index,12]))
+		HS_brute_median<-c(HS_brute_median, weighted.median(table2[,3], table2[,12]))
+		HS_relative_median<-c(HS_relative_median, weighted.median((table2[,3]/table2[,6]), table2[,12]))
+		HS_loci_brute_median<-c(HS_loci_brute_median, weighted.median(table2[loci_index,3], table2[loci_index,12]))
+		HS_loci_relative_median<-c(HS_loci_relative_median, weighted.median((table2[loci_index,3]/table2[loci_index,6]), table2[loci_index,12]))
 	}else{
-		HS_brute_mean<-0
-		HS_relative_mean<-0
-		HS_loci_brute_mean<-0
-		HS_loci_relative_mean<-0
-		HS_brute_median<-0
-		HS_relative_median<-0
-		HS_loci_brute_median<-0
-		HS_loci_relative_median<-0
+		HS_brute_mean<-c(HS_brute_mean, 0)
+		HS_relative_mean<-c(HS_relative_mean, 0)
+		HS_loci_brute_mean<-c(HS_loci_brute_mean, 0)
+		HS_loci_relative_mean<-c(HS_loci_relative_mean, 0)
+		HS_brute_median<-c(HS_brute_median, 0)
+		HS_relative_median<-c(HS_relative_median, 0)
+		HS_loci_brute_median<-c(HS_loci_brute_median, 0)
+		HS_loci_relative_median<-c(HS_loci_relative_median, 0)
 	}
 }
 
