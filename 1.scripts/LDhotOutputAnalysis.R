@@ -90,14 +90,25 @@ for(i in 1:itercount){
 
 	loci_index<-which((table2[,1]>=10 & table2[,1]<=15) | (table2[,2]>=10 & table2[,2]<=15))
 
-	HS_brute_mean<-sum(table2[,3]*table2[,12])
-	HS_relative_mean<-sum((table2[,3]/table2[,6])*table2[,12])
-	HS_loci_brute_mean<-sum(table2[loci_index,3]*table2[loci_index,12])
-	HS_loci_relative_mean<-sum((table2[loci_index,3]/table2[loci_index,6])*table2[loci_index,12])
-	HS_brute_median<-weighted.median(table2[,3], table2[,12])
-	HS_relative_median<-weighted.median((table2[,3]/table2[,6]), table2[,12])
-	HS_loci_brute_median<-weighted.median(table2[loci_index,3], table2[loci_index,12])
-	HS_loci_relative_median<-weighted.median((table2[loci_index,3]/table2[loci_index,6]), table2[loci_index,12])
+	if(nrow(table2)!=0){
+		HS_brute_mean<-sum(table2[,3]*table2[,12])
+		HS_relative_mean<-sum((table2[,3]/table2[,6])*table2[,12])
+		HS_loci_brute_mean<-sum(table2[loci_index,3]*table2[loci_index,12])
+		HS_loci_relative_mean<-sum((table2[loci_index,3]/table2[loci_index,6])*table2[loci_index,12])
+		HS_brute_median<-weighted.median(table2[,3], table2[,12])
+		HS_relative_median<-weighted.median((table2[,3]/table2[,6]), table2[,12])
+		HS_loci_brute_median<-weighted.median(table2[loci_index,3], table2[loci_index,12])
+		HS_loci_relative_median<-weighted.median((table2[loci_index,3]/table2[loci_index,6]), table2[loci_index,12])
+	}else{
+		HS_brute_mean<-0
+		HS_relative_mean<-0
+		HS_loci_brute_mean<-0
+		HS_loci_relative_mean<-0
+		HS_brute_median<-0
+		HS_relative_median<-0
+		HS_loci_brute_median<-0
+		HS_loci_relative_median<-0
+	}
 }
 
 OutputTable<-data.frame(HS_count=HS_count, HS_loci_count=HS_loci_count, HS_brute_mean=HS_brute_mean, HS_relative_mean=HS_relative_mean, HS_loci_brute_mean=HS_loci_brute_mean, HS_loci_relative_mean=HS_loci_relative_mean, HS_brute_median=HS_brute_median, HS_relative_median=HS_relative_median, HS_loci_brute_median=HS_loci_brute_median, HS_loci_relative_median=HS_loci_relative_median)
