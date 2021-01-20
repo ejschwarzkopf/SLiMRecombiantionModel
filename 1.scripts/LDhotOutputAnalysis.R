@@ -115,4 +115,4 @@ OutputTable<-data.frame(HS_count=HS_count, HS_loci_count=HS_loci_count, HS_brute
 
 output_filename<-paste(filetemplate, ".ldhot.summary.txt", sep='')
 
-write.table(OutputTable, filetemplate, quote=FALSE)
+write.table(OutputTable, output_filename, quote=FALSE)
