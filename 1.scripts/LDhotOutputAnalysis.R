@@ -68,7 +68,7 @@ for(i in 1:itercount){
 	table<-ogtable[which(ogtable[,9]<0.001), 1:2]
 	# This while loop will merge any hotspots that overlap with each other
 	j=1
-	while(j!=0 & nrow(tabe)>=2){
+	while(j!=0 & nrow(table)>j){
 		if(nrow(table)==j){
 			j=0
 		}else{
