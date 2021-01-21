@@ -97,8 +97,13 @@ for(i in 1:itercount){
 		HS_loci_relative_mean<-c(HS_loci_relative_mean, sum((table2[loci_index,3]/table2[loci_index,6])*table2[loci_index,12]))
 		HS_brute_median<-c(HS_brute_median, weighted.median(table2[,3], table2[,12]))
 		HS_relative_median<-c(HS_relative_median, weighted.median((table2[,3]/table2[,6]), table2[,12]))
-		HS_loci_brute_median<-c(HS_loci_brute_median, weighted.median(table2[loci_index,3], table2[loci_index,12]))
-		HS_loci_relative_median<-c(HS_loci_relative_median, weighted.median((table2[loci_index,3]/table2[loci_index,6]), table2[loci_index,12]))
+		if(length(loci_index)!=0){
+			HS_loci_brute_median<-c(HS_loci_brute_median, weighted.median(table2[loci_index,3], table2[loci_index,12]))
+			HS_loci_relative_median<-c(HS_loci_relative_median, weighted.median((table2[loci_index,3]/table2[loci_index,6]), table2[loci_index,12]))
+		}else{
+			HS_loci_brute_median<-c(HS_loci_brute_median, 0)
+			HS_loci_relative_median<-c(HS_loci_relative_median, 0)
+		}
 	}else{
 		HS_brute_mean<-c(HS_brute_mean, 0)
 		HS_relative_mean<-c(HS_relative_mean, 0)
