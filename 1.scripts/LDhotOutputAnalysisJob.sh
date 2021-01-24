@@ -6,11 +6,11 @@
 #SBATCH --time=7-00:00:00
 #SBATCH --nodes=1
 #SBATCH --workdir="/data/cornejo/projects/e.jimenezschwarzkop/SLiMRecombinationModel"
-#SBATCH --array=1-36
+#SBATCH --array=1-900
 
-i=$SLURM_ARRAY_TASK_ID
+n=$SLURM_ARRAY_TASK_ID
 
-n=$(awk 'FNR == '$i' {print}' tmp2.txt)
+#n=$(awk 'FNR == '$i' {print}' tmp2.txt)
 
 module load r/4.0.2
 
