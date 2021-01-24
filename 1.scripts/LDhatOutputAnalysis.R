@@ -1,7 +1,7 @@
 ##############################################
 ##### R script that obtains all relevant #####
-##### information from LDhot output and  #####
-##### and places it in a new table. This #####
+##### information from LDhat output and  #####
+##### places it in a new table. This     #####
 ##### script runs over the 500 itera-    #####
 ##### tions of a particular set of para- #####
 ##### meters.                            #####
@@ -62,7 +62,7 @@ for(i in 1:itercount){
 	filename<-paste(filetemplate, i, ".res.txt", sep='')
 	ogtable<-read.table(filename, header=TRUE)
 	# Subset by positions between the two loci
-	table<-ogtable[which(ogtable[,1]>=10 & ogtable[,1]<=15),]
+	table<-ogtable[which(ogtable[,1]>=10 & ogtable[,1]<=11),]
 
 	Rates_mean_SD_all<-c(Rates_mean_SD_all, sd(ogtable[,2]))
 	Rates_mean_CV_all<-c(Rates_mean_CV_all, sd(ogtable[,2])/mean(ogtable[,2]))
