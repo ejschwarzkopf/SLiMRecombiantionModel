@@ -62,7 +62,7 @@ colnames(sd.table)<-c("HS_count_sd", "HS_loci_count_sd", "HS_brute_mean_sd", "HS
 
 
 # load the table with parameter information
-parameters.table<-read.table("/data/cornejo/projects/e.jimenezschwarzkop/SLiMRecombinationModel/6.aux/SLiM_Parameters.txt")
+parameters.table<-read.table("/data/cornejo/projects/e.jimenezschwarzkop/SLiMRecombinationModel/6.aux/SLiM_Parameters.txt", header=TRUE)
 
 output.table<-cbind(parameters.table, means.table, sd.table)
 
