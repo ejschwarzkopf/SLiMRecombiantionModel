@@ -11,4 +11,4 @@ n=$SLURM_ARRAY_TASK_ID
 
 module load r/4.0.2
 
-Rscript --vanilla 1.scripts/LDhotOutputAnalysis.R /data/cornejo/projects/e.jimenezschwarzkop/SLiMRecombinationModel/8.LDhot_summary/LDhot_case_ 900
+Rscript --vanilla 1.scripts/LDhotSummaryAnalysis.R /data/cornejo/projects/e.jimenezschwarzkop/SLiMRecombinationModel/8.LDhot_summary/LDhot_case_ 900
