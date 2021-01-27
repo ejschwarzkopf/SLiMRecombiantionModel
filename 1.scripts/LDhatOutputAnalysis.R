@@ -64,21 +64,27 @@ for(i in 1:itercount){
 	# Subset by positions between the two loci
 	table<-ogtable[which(ogtable[,1]>=10 & ogtable[,1]<=11),]
 
+	Rates_mean_mean_all<-c(Rates_mean_SD_all, mean(ogtable[,2]))
 	Rates_mean_SD_all<-c(Rates_mean_SD_all, sd(ogtable[,2]))
 	Rates_mean_CV_all<-c(Rates_mean_CV_all, sd(ogtable[,2])/mean(ogtable[,2]))
+	Rates_mean_mean_loci<-c(Rates_mean_SD_loci, mean(table[,2]))
 	Rates_mean_SD_loci<-c(Rates_mean_SD_loci, sd(table[,2]))
 	Rates_mean_CV_loci<-c(Rates_mean_CV_loci, sd(table[,2])/mean(table[,2]))
+	Rates_median_mean_all<-c(Rates_median_SD_all, mean(ogtable[,3]))
 	Rates_median_SD_all<-c(Rates_median_SD_all, sd(ogtable[,3]))
 	Rates_median_CV_all<-c(Rates_median_CV_all, sd(ogtable[,3])/mean(ogtable[,2]))
+	Rates_median_mean_loci<-c(Rates_median_SD_loci, mean(table[,3]))
 	Rates_median_SD_loci<-c(Rates_median_SD_loci, sd(table[,3]))
 	Rates_median_CV_loci<-c(Rates_median_CV_loci, sd(table[,3])/mean(table[,3]))
+	Rates_95range_mean_all<-c(Rates_95range_SD_all, mean(ogtable[,5]-ogtable[,4]))
 	Rates_95range_SD_all<-c(Rates_95range_SD_all, sd(ogtable[,5]-ogtable[,4]))
 	Rates_95range_CV_all<-c(Rates_95range_CV_all, sd(ogtable[,5]-ogtable[,4])/mean(ogtable[,5]-ogtable[,4]))
+	Rates_95range_mean_loci<-c(Rates_95range_SD_loci, mean(table[,5]-table[,4]))
 	Rates_95range_SD_loci<-c(Rates_95range_SD_loci, sd(table[,5]-table[,4]))
 	Rates_95range_CV_loci<-c(Rates_95range_CV_loci, sd(table[,5]-table[,4])/mean(table[,5]-table[,4]))
 }
 
-OutputTable<-data.frame(Rates_mean_SD_all=Rates_mean_SD_all, Rates_mean_CV_all=Rates_mean_CV_all, Rates_mean_SD_loci=Rates_mean_SD_loci, Rates_mean_CV_loci=Rates_mean_CV_loci, Rates_median_SD_all=Rates_median_SD_all, Rates_median_CV_all=Rates_median_CV_all, Rates_median_SD_loci=Rates_median_SD_loci, Rates_median_CV_loci=Rates_median_CV_loci, Rates_95range_SD_all=Rates_95range_SD_all, Rates_95range_CV_all=Rates_95range_CV_all, Rates_95range_SD_loci=Rates_95range_SD_loci, Rates_95range_CV_loci=Rates_95range_CV_loci)
+OutputTable<-data.frame(Rates_mean_mean_all=Rates_mean_mean_all, Rates_mean_SD_all=Rates_mean_SD_all, Rates_mean_CV_all=Rates_mean_CV_all, Rates_mean_mean_loci=Rates_mean_mean_loci, Rates_mean_SD_loci=Rates_mean_SD_loci, Rates_mean_CV_loci=Rates_mean_CV_loci, Rates_median_mean_all=Rates_median_mean_all, Rates_median_SD_all=Rates_median_SD_all, Rates_median_CV_all=Rates_median_CV_all, Rates_median_mean_loci=Rates_median_mean_loci, Rates_median_SD_loci=Rates_median_SD_loci, Rates_median_CV_loci=Rates_median_CV_loci, Rates_95range_mean_all=Rates_95range_mean_all, Rates_95range_SD_all=Rates_95range_SD_all, Rates_95range_CV_all=Rates_95range_CV_all, Rates_95range_mean_loci=Rates_95range_mean_loci, Rates_95range_SD_loci=Rates_95range_SD_loci, Rates_95range_CV_loci=Rates_95range_CV_loci)
 
 output_filename<-paste(filetemplate, ".res.summary.txt", sep='')
 
