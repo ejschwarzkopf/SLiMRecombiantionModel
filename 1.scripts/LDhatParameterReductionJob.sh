@@ -10,4 +10,4 @@
 
 module load r/4.0.2
 
-Rscript --vanilla "6.aux/SLiM_Parameters.txt" "7.LDhat_summary/LDhat_case_" ".summary.txt" "LDhat_"
+Rscript --vanilla 1.scripts/LDhatParameterReduction.R 6.aux/SLiM_Parameters.txt 7.LDhat_summary/LDhat_case_ .summary.txt LDhat_
