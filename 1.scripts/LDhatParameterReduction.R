@@ -61,10 +61,10 @@ for( r in unique(param_table$R) ){
 		diff_t<-t.test(case_table$Rates_diff, comp_table$Rates_diff, paired=FALSE, var.equal=FALSE)
 		mean95_KS<-ks.test(case_table$Rates_95range_mean_all, rnorm(500, mean=mean(case_table$Rates_95range_mean_all), sd=sd(case_table$Rates_95range_mean_all)))
 		mean95_KW<-kruskal.test(list(case_table$Rates_95range_mean_all, comp_table$Rates_95range_mean_all))
-		mean95_t<-t.test(case_table$Rates_95range_mean_all, comp_table$Rates_95range_mean_all, paired=FALSE. var.equal=FALSE)
+		mean95_t<-t.test(case_table$Rates_95range_mean_all, comp_table$Rates_95range_mean_all, paired=FALSE, var.equal=FALSE)
 		mediansd_KS<-ks.test(case_table$Rates_median_SD_all, rnorm(500, mean=mean(case_table$Rates_median_SD_all), sd=sd(case_table$Rates_median_SD_all)))
 		mediansd_KW<-kruskal.test(list(case_table$Rates_median_SD_all, comp_table$Rates_median_SD_all))
-		mediansd_t<-t.test(case_table$Rates_median_SD_all, comp_table$Rates_median_SD_all, paired=FALSE. var.equal=FALSE)
+		mediansd_t<-t.test(case_table$Rates_median_SD_all, comp_table$Rates_median_SD_all, paired=FALSE, var.equal=FALSE)
 		case_p<-c(diff_KS, diff_KW, diff_t, mean95_KS, mean95_KW, mean95_t, mediansd_KS, mediansd_KW, mediansd_t)
 		pvalue_table<-rbind(pvalue_table, case_p)
 	}
