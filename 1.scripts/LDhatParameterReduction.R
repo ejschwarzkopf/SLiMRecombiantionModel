@@ -41,7 +41,7 @@ output_template_prefix<-args[4]
 
 # Read the parameter sets
 
-param_table<-read.table(param_filename, haeder=TRUE)
+param_table<-read.table(param_filename, header=TRUE)
 
 # For loop that goes over possible values of recombination rate
 
