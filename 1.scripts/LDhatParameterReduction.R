@@ -51,11 +51,11 @@ for( r in unique(param_table$R) ){
 	cases<-which(param_table$R==r)
 	comp_case<-cases[1]
 	comp_input<-paste(input_template_prefix, comp_case, input_template_suffix, sep='')
-	comp_table<-read.table(comp_input, haeder=TRUE, row.names=1)
+	comp_table<-read.table(comp_input, header=TRUE, row.names=1)
 	pvalue_table<-data.frame()
 	for( i in cases){
 		case_input<-paste(input_template_prefix, i, input_template_suffix, sep='')
-		case_table<-read.table(case_input, haeder=TRUE, row.names=1)
+		case_table<-read.table(case_input, header=TRUE, row.names=1)
 		diff_KS<-ks.test(case_table$Rates_diff, rnorm(500, mean=mean(case_table$Rates_diff), sd=sd(case_table$Rates_diff)))
 		diff_KW<-kruskal.test(list(case_table$Rates_diff, comp_table$Rates_diff))
 		diff_t<-t.test(case_table$Rates_diff, comp_table$Rates_diff, paired=FALSE, var.equal=FALSE)
