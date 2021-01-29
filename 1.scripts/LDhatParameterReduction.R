@@ -58,7 +58,7 @@ for( r in unique(param_table$R) ){
 		case_table<-read.table(case_input, haeder=TRUE, row.names=1)
 		diff_KS<-ks.test(case_table$Rates_diff, rnorm(500, mean=mean(case_table$Rates_diff), sd=sd(case_table$Rates_diff)))
 		diff_KW<-kruskal.test(list(case_table$Rates_diff, comp_table$Rates_diff))
-		diff_t<-t.test(case_table$Rates_diff, comp_table$Rates_diff, paired=FALSE. var.equal=FALSE)
+		diff_t<-t.test(case_table$Rates_diff, comp_table$Rates_diff, paired=FALSE, var.equal=FALSE)
 		mean95_KS<-ks.test(case_table$Rates_95range_mean_all, rnorm(500, mean=mean(case_table$Rates_95range_mean_all), sd=sd(case_table$Rates_95range_mean_all)))
 		mean95_KW<-kruskal.test(list(case_table$Rates_95range_mean_all, comp_table$Rates_95range_mean_all))
 		mean95_t<-t.test(case_table$Rates_95range_mean_all, comp_table$Rates_95range_mean_all, paired=FALSE. var.equal=FALSE)
