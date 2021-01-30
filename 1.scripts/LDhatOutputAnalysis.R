@@ -75,7 +75,7 @@ for(i in 1:itercount){
 	ogtable<-read.table(filename, header=TRUE)
 	# Subset by positions between the two loci
 	table<-ogtable[which(ogtable[,1]>=10 & ogtable[,1]<=11),]
-	bgtable<-ogtable[which(ogtable[,1]<10 & ogtable[,1]>11),]
+	bgtable<-ogtable[which(ogtable[,1]<10 | ogtable[,1]>11),]
 
 	Rates_mean_mean_all<-c(Rates_mean_mean_all, mean(ogtable[,2]))
 	Rates_mean_SD_all<-c(Rates_mean_SD_all, sd(ogtable[,2]))
