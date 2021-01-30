@@ -95,7 +95,7 @@ for(i in 1:itercount){
 	Rates_95range_mean_loci<-c(Rates_95range_mean_loci, mean(table[,5]-table[,4]))
 	Rates_95range_SD_loci<-c(Rates_95range_SD_loci, sd(table[,5]-table[,4]))
 	Rates_95range_CV_loci<-c(Rates_95range_CV_loci, sd(table[,5]-table[,4])/mean(table[,5]-table[,4]))
-	Rates_median_mean_bg<-c(Rates_median_mean_bg, mean(bgtable[,3])
+	Rates_median_mean_bg<-c(Rates_median_mean_bg, mean(bgtable[,3]))
 	Rates_diff<-Rates_median_mean_loci-Rates_median_mean_bg
 }
 
