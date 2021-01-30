@@ -81,15 +81,15 @@ mediansd_params<-which((full_pvalue_table$mediansd_KS<=0.05 & full_pvalue_table$
 
 diff_outputfile<-paste(output_template_prefix, "_diff_parameters.txt", sep='')
 
-write.table(diff_outputfile, diff_params. quote=FALSE, row.names=FALSE)
+write.table(diff_outputfile, diff_params, quote=FALSE, row.names=FALSE)
 
 mean95_outputfile<-paste(output_template_prefix, "_mean95_parameters.txt", sep='')
 
-write.table(mean95_outputfile, mean95_params. quote=FALSE, row.names=FALSE)
+write.table(mean95_outputfile, mean95_params, quote=FALSE, row.names=FALSE)
 
 mediansd_outputfile<-paste(output_template_prefix, "_mediansd_parameters.txt", sep='')
 
-write.table(mediansd_outputfile, mediansd_params. quote=FALSE, row.names=FALSE)
+write.table(mediansd_outputfile, mediansd_params, quote=FALSE, row.names=FALSE)
 
 
 
