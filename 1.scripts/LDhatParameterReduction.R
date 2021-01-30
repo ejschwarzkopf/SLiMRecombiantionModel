@@ -45,7 +45,7 @@ param_table<-read.table(param_filename, header=TRUE)
 
 # For loop that goes over possible values of recombination rate
 
-full_pvalue_table<-data.frame()
+full_pvalue_table<-data.frame(0, 0, 0, 0, 0, 0, 0, 0, 0)
 
 for( r in unique(param_table$R) ){
 	cases<-which(param_table$R==r)
