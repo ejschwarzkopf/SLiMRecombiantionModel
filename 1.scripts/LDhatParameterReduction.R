@@ -65,7 +65,7 @@ for( r in unique(param_table$R) ){
 		mediansd_KS<-ks.test(case_table$Rates_median_SD_all, rnorm(500, mean=mean(case_table$Rates_median_SD_all), sd=sd(case_table$Rates_median_SD_all)))
 		mediansd_KW<-kruskal.test(list(case_table$Rates_median_SD_all, comp_table$Rates_median_SD_all))
 		mediansd_t<-t.test(case_table$Rates_median_SD_all, comp_table$Rates_median_SD_all, paired=FALSE, var.equal=FALSE)
-		case_p<-c(diff_KS, diff_KW, diff_t, mean95_KS, mean95_KW, mean95_t, mediansd_KS, mediansd_KW, mediansd_t)
+		case_p<-c(diff_KS$p.value, diff_KW$p.value, diff_t$p.value, mean95_KS$p.value, mean95_KW$p.value, mean95_t$p.value, mediansd_KS$p.value, mediansd_KW$p.value, mediansd_t$p.value)
 		pvalue_table<-rbind(pvalue_table, case_p)
 	}
 	full_pvalue_table[cases,]<-pvalue_table
