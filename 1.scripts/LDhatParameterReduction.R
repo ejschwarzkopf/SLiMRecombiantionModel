@@ -75,9 +75,15 @@ colnames(full_pvalue_table)<-c("diff_KS", "diff_KW", "diff_t", "mean95_KS", "mea
 
 diff_params<-which((full_pvalue_table$diff_KS<=0.05 & full_pvalue_table$diff_t<=0.05) | (full_pvalue_table$diff_KS>0.05 & full_pvalue_table$diff_KW))
 
+diff_params
+
 mean95_params<-which((full_pvalue_table$mean95_KS<=0.05 & full_pvalue_table$mean95_t<=0.05) | (full_pvalue_table$mean95_KS>0.05 & full_pvalue_table$mean95_KW))
 
+mean96_params
+
 mediansd_params<-which((full_pvalue_table$mediansd_KS<=0.05 & full_pvalue_table$mediansd_t<=0.05) | (full_pvalue_table$mediansd_KS>0.05 & full_pvalue_table$mediansd_KW))
+
+mediansd_params
 
 diff_outputfile<-paste(output_template_prefix, "_diff_parameters.txt", sep='')
 
