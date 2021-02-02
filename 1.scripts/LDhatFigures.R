@@ -78,14 +78,14 @@ for( j in 1:nrow(param_diff_table) ){
 
 diff_full_table<-diff_full_table[,-1]
 
-row.names(diff_full_table)<-param_diff_table
+row.names(diff_full_table)<-param_diff_table$V1
 
 diff_figure_table<-data.frame(id=1:ncol(diff_full_table), mean=apply(diff_full_table, 2, mean), sd=apply(diff_full_table, 2, sd))
 
 print("diff")
 mean95_full_table<-data.frame(rep(0, 500))
 
-for( i in param_mean95_table ){
+for( i in param_mean95_table$V1 ){
 	mean95_case_name<-paste(input_template_prefix_case, i, input_template_suffix_case, sep = '')
 	mean95_case_table<-read.table(mean95_case_name, header=TRUE, row.names=1)
 	mean95_case_vector<-mean95_case_name$Rates_mean95
@@ -95,7 +95,7 @@ for( i in param_mean95_table ){
 
 mean95_full_table<-mean95_full_table[,-1]
 
-row.names(mean95_full_table)<-param_mean95_table
+row.names(mean95_full_table)<-param_mean95_table$V1
 
 mean95_figure_table<-data.frame(id=1:ncol(mean95_full_table), mean=apply(mean95_full_table, 2, mean), sd=apply(mean95_full_table, 2, sd))
 
@@ -103,7 +103,7 @@ mean95_figure_table<-data.frame(id=1:ncol(mean95_full_table), mean=apply(mean95_
 
 mediansd_full_table<-data.frame(rep(0, 500))
 
-for( i in param_mediansd_table ){
+for( i in param_mediansd_table$V1 ){
 	mediansd_case_name<-paste(input_template_prefix_case, i, input_template_suffix_case, sep = '')
 	mediansd_case_table<-read.table(mediansd_case_name, header=TRUE, row.names=1)
 	mediansd_case_vector<-mediansd_case_name$Rates_mediansd
@@ -113,7 +113,7 @@ for( i in param_mediansd_table ){
 
 mediansd_full_table<-mediansd_full_table[,-1]
 
-row.names(mediansd_full_table)<-param_mediansd_table
+row.names(mediansd_full_table)<-param_mediansd_table$V1
 
 mediansd_figure_table<-data.frame(id=1:ncol(mediansd_full_table), mean=apply(mediansd_full_table, 2, mean), sd=apply(mediansd_full_table, 2, sd))
 
