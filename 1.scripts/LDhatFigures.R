@@ -65,12 +65,13 @@ print("mediansd")
 
 diff_full_table<-data.frame(rep(0, 500))
 
-for( i in param_diff_table ){
+for( j in 1:length(param_diff_table) ){
+	i=param_diff_table[j]
 	print(i)
 	diff_case_name<-paste(input_template_prefix_case, i, input_template_suffix_case, sep = '')
 	diff_case_table<-read.table(diff_case_name, header=TRUE, row.names=1)
 	diff_case_vector<-diff_case_table$Rates_diff
-	diff_figure_table<-cbind(diff_figure_table, diff_case_vector)
+	diff_full_table<-cbind(diff_full_table, diff_case_vector)
 	rm(diff_case_table)
 	print(i)
 }
