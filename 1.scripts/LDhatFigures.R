@@ -65,7 +65,7 @@ print("mediansd")
 
 diff_full_table<-data.frame(rep(0, 500))
 
-for( j in 1:length(param_diff_table) ){
+for( j in 1:nrow(param_diff_table) ){
 	i=param_diff_table[j,1]
 	print(i)
 	diff_case_name<-paste(input_template_prefix_case, i, input_template_suffix_case, sep = '')
