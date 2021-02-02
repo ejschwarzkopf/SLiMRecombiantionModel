@@ -14,7 +14,6 @@
 ##############################################
 
 library(ggplot2)
-library(ggpubr)
 
 ##############################################
 ##### Recieve command line name for in-  #####
@@ -36,9 +35,9 @@ input_template_prefix_param<-args[1]
 
 input_template_suffix_param<-args[2]
 
-input_template_suffix_case<-args[3]
+input_template_prefix_case<-args[3]
 
-input_template_prefix_case<-args[4]
+input_template_suffix_case<-args[4]
 
 output_template_prefix<-args[5]
 
