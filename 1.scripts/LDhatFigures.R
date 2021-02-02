@@ -72,6 +72,7 @@ for( i in param_diff_table ){
 	diff_case_vector<-diff_case_table$Rates_diff
 	diff_figure_table<-cbind(diff_figure_table, diff_case_vector)
 	rm(diff_case_table)
+	print(i)
 }
 
 diff_full_table<-diff_full_table[,-1]
