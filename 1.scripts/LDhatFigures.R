@@ -56,7 +56,7 @@ print("mean95")
 mediansd_input_name<-paste(input_template_prefix_param, "mediansd", input_template_suffix_param, sep='')
 
 param_mediansd_table<-read.table(mediansd_input_name)
-
+print("mediansd")
 ##############################################
 ##### Make tables for figures.           #####
 ##############################################
