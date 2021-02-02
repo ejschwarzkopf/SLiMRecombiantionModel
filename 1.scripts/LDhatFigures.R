@@ -48,11 +48,11 @@ output_template_prefix<-args[5]
 diff_input_name<-paste(input_template_prefix_param, "diff", input_template_suffix_param, sep='')
 
 param_diff_table<-read.table(diff_input_name)
-
+print("diff")
 mean95_input_name<-paste(input_template_prefix_param, "mean95", input_template_suffix_param, sep='')
 
 param_mean95_table<-read.table(mean95_input_name)
-
+print("mean95")
 mediansd_input_name<-paste(input_template_prefix_param, "mediansd", input_template_suffix_param, sep='')
 
 param_mediansd_table<-read.table(mediansd_input_name)
