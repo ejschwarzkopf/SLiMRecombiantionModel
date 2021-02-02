@@ -80,7 +80,7 @@ row.names(diff_full_table)<-param_diff_table
 
 diff_figure_table<-data.frame(id=1:ncol(diff_full_table), mean=apply(diff_full_table, 2, mean), sd=apply(diff_full_table, 2, sd))
 
-
+print("diff")
 mean95_full_table<-data.frame(rep(0, 500))
 
 for( i in param_mean95_table ){
