@@ -121,7 +121,7 @@ mediansd_figure_table<-data.frame(id=1:ncol(mediansd_full_table), mean=apply(med
 ##### Make figures                       #####
 ##############################################
 
-p_diff<-ggplot(diff_figure_table[order(diff_figure_table$mean),], aes(x=as.string(id), y=mean)) +
+p_diff<-ggplot(diff_figure_table[order(diff_figure_table$mean),], aes(x=as.character(id), y=mean)) +
 	geom_pointrange(aes(ymin=mean-sd, ymax=mean+sd)) +
 	NULL
 
