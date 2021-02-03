@@ -78,7 +78,7 @@ for( j in 1:nrow(param_diff_table) ){
 
 diff_full_table<-diff_full_table[,-1]
 
-row.names(diff_full_table)<-param_diff_table$V1
+colnames(diff_full_table)<-param_diff_table$V1
 
 diff_figure_table<-data.frame(id=1:ncol(diff_full_table), mean=apply(diff_full_table, 2, mean), sd=apply(diff_full_table, 2, sd))
 
@@ -88,14 +88,14 @@ mean95_full_table<-data.frame(rep(0, 500))
 for( i in param_mean95_table$V1 ){
 	mean95_case_name<-paste(input_template_prefix_case, i, input_template_suffix_case, sep = '')
 	mean95_case_table<-read.table(mean95_case_name, header=TRUE, row.names=1)
-	mean95_case_vector<-mean95_case_name$Rates_mean95
+	mean95_case_vector<-mean95_case_table$Rates_95range_mean_all
 	mean95_full_table<-cbind(mean95_full_table, mean95_case_vector)
 	rm(mean95_case_table)
 }
 
 mean95_full_table<-mean95_full_table[,-1]
 
-row.names(mean95_full_table)<-param_mean95_table$V1
+colnames(mean95_full_table)<-param_mean95_table$V1
 
 mean95_figure_table<-data.frame(id=1:ncol(mean95_full_table), mean=apply(mean95_full_table, 2, mean), sd=apply(mean95_full_table, 2, sd))
 
@@ -106,14 +106,14 @@ mediansd_full_table<-data.frame(rep(0, 500))
 for( i in param_mediansd_table$V1 ){
 	mediansd_case_name<-paste(input_template_prefix_case, i, input_template_suffix_case, sep = '')
 	mediansd_case_table<-read.table(mediansd_case_name, header=TRUE, row.names=1)
-	mediansd_case_vector<-mediansd_case_name$Rates_mediansd
+	mediansd_case_vector<-mediansd_case_table$Rates_median_SD_all
 	mediansd_full_table<-cbind(mediansd_full_table, mediansd_case_vector)
 	rm(mediansd_case_table)
 }
 
 mediansd_full_table<-mediansd_full_table[,-1]
 
-row.names(mediansd_full_table)<-param_mediansd_table$V1
+colnames(mediansd_full_table)<-param_mediansd_table$V1
 
 mediansd_figure_table<-data.frame(id=1:ncol(mediansd_full_table), mean=apply(mediansd_full_table, 2, mean), sd=apply(mediansd_full_table, 2, sd))
 
@@ -121,21 +121,21 @@ mediansd_figure_table<-data.frame(id=1:ncol(mediansd_full_table), mean=apply(med
 ##### Make figures                       #####
 ##############################################
 
-p_diff<-ggplot(diff_figure_table, aes(x=id, y=mean)) +
+p_diff<-ggplot(diff_figure_table[order(diff_figure_table$mean),], aes(x=id, y=mean)) +
 	geom_pointrange(aes(ymin=mean-sd, ymax=mean+sd)) +
-	null()
+	NULL
 
 ggsave("Rec_diff_test.pdf", height=3.5, width=10, units="in")
 
 p_mean95<-ggplot(mean95_figure_table, aes(x=id, y=mean)) +
 	geom_pointrange(aes(ymin=mean-sd, ymax=mean+sd)) +
-	null()
+	NULL
 
 ggsave("Rec_mean95_test.pdf", height=3.5, width=10, units="in")
 
 p_mediansd<-ggplot(mediansd_figure_table, aes(x=id, y=mean)) +
 	geom_pointrange(aes(ymin=mean-sd, ymax=mean+sd)) +
-	null()
+	NULL
 
 ggsave("Rec_mediansd_test.pdf", height=3.5, width=10, units="in")
 
