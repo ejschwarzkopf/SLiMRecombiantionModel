@@ -124,7 +124,7 @@ mediansd_figure_table<-data.frame(id=1:ncol(mediansd_full_table), mean=apply(med
 diff_figure_table<-diff_figure_table[order(diff_figure_table$mean),]
 
 p_diff<-ggplot(diff_figure_table, aes(x=id, y=mean)) +
-	geom_point() +
+	geom_point(size=0.2) +
 	geom_errorbar(aes(x=id, ymin=mean-sd, ymax=mean+sd)) +
 	NULL
 
