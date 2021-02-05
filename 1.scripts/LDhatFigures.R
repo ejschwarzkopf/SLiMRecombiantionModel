@@ -138,9 +138,9 @@ mediansd_figure_table$id<-1:nrow(mediansd_figure_table)
 
 
 
-p_diff<-ggplot(diff_figure_table, aes(x=id2, y=mean)) +
+p_diff<-ggplot(diff_figure_table, aes(x=id, y=mean)) +
 	geom_point(size=0.2) +
-	geom_errorbar(aes(x=id2, ymin=mean-sd, ymax=mean+sd), size=0.5) +
+	geom_errorbar(aes(x=id, ymin=mean-sd, ymax=mean+sd), size=0.5) +
 	NULL
 
 ggsave("Rec_diff_test.pdf", height=3.5, width=10, units="in")
