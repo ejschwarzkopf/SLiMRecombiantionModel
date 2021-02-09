@@ -73,11 +73,11 @@ for( r in unique(param_table$R) ){
 
 colnames(full_pvalue_table)<-c("diff_KS", "diff_KW", "diff_t", "mean95_KS", "mean95_KW", "mean95_t", "mediansd_KS", "mediansd_KW", "mediansd_t")
 
-diff_params<-which((full_pvalue_table$diff_KS<=0.05 & full_pvalue_table$diff_t<=0.05) | (full_pvalue_table$diff_KS>0.05 & full_pvalue_table$diff_KW))
+diff_params<-which((full_pvalue_table$diff_KS<=0.05 & full_pvalue_table$diff_t<=0.05) | (full_pvalue_table$diff_KS>0.05 & full_pvalue_table$diff_KW <= 0.05))
 
-mean95_params<-which((full_pvalue_table$mean95_KS<=0.05 & full_pvalue_table$mean95_t<=0.05) | (full_pvalue_table$mean95_KS>0.05 & full_pvalue_table$mean95_KW))
+mean95_params<-which((full_pvalue_table$mean95_KS<=0.05 & full_pvalue_table$mean95_t<=0.05) | (full_pvalue_table$mean95_KS>0.05 & full_pvalue_table$mean95_KW <= 0.05))
 
-mediansd_params<-which((full_pvalue_table$mediansd_KS<=0.05 & full_pvalue_table$mediansd_t<=0.05) | (full_pvalue_table$mediansd_KS>0.05 & full_pvalue_table$mediansd_KW))
+mediansd_params<-which((full_pvalue_table$mediansd_KS<=0.05 & full_pvalue_table$mediansd_t<=0.05) | (full_pvalue_table$mediansd_KS>0.05 & full_pvalue_table$mediansd_KW <= 0.05))
 
 diff_outputfile<-paste(output_template_prefix, "diff_parameters.txt", sep='')
 
