@@ -18,5 +18,7 @@ filepath=$(lsworkspace -v | tail -n 4 | head -n 1)
 
 filetemplate=$(echo ${filepath}/5.LDhot_output/case_${n}/SLiM_case_${n}_)
 
+itercount=$(ls $filepath* | wc -l)
+
 Rscript --vanilla 1.scripts/LDhotOutputAnalysis.R ${filetemplate} 500
 
