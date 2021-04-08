@@ -20,6 +20,6 @@ Rscript --vanilla 1.scripts/LDhatOutputAnalysis.R ${filetemplate} 500
 
 if [ $n -eq 900 ]; then
 	for i in `seq 1 900`; do
-		cp ${filepath}/4.LDhat_output/case_${i}/SLiM_case_${i}_.res.summary.txt 7.LDhat_summary/LDhat_case_${i}.summary.txt
+		cp ${filepath}/4.LDhat_output/case_${i}/SLiM_case_${i}_2.res.summary.txt 7.LDhat_summary/LDhat_case_${i}.summary.txt
 	done
 fi

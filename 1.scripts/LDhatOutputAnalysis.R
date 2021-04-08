@@ -71,7 +71,7 @@ Rates_diff<-c()
 
 for(i in 1:itercount){
 	# generate the filename from the template provided as input
-	filename<-paste(filetemplate, i, ".res.txt", sep='')
+	filename<-paste(filetemplate, i, "2.res.txt", sep='')
 	ogtable<-read.table(filename, header=TRUE)
 	# Subset by positions between the two loci
 	table<-ogtable[which(ogtable[,1]>=10 & ogtable[,1]<=11),]
