@@ -62,7 +62,7 @@ HS_loci_relative_median<-c()
 
 for(i in 1:itercount){
 	# generate the filename from the template provided as input
-	filename<-paste(filetemplate, i, ".ldhot.hotspots.txt", sep='')
+	filename<-paste(filetemplate, i, "_2.ldhot.hotspots.txt", sep='')
 	ogtable<-read.table(filename, header=TRUE)
 	# Subset by significant hotspots and keep the start and stop positions
 	table<-ogtable[which(ogtable[,9]<0.001), 1:2]
