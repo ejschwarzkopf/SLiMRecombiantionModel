@@ -1090,6 +1090,8 @@ ggsave("Paper_Figures_Scatter_All.pdf", height=16, width=12, units="in")
 
 allcases_figure_table$diff_mean_adj<-allcases_figure_table$medianloci_mean/(allcases_figure_table$medianloci_mean-allcases_figure_table$diff_mean)
 
+allcases_figure_table$medianall_mean<-allcases_figure_table$medianloci_mean-allcases_figure_table$diff_mean
+
 regress_1<-lm(diff_mean_adj ~ R + HI_1 * HI_2, data=subset(allcases_figure_table, R!=1e-04))
 
 regress_2<-lm(-diff_mean ~ R + HI_1 * HI_2, data=subset(allcases_figure_table, R!=1e-04))
@@ -1103,13 +1105,174 @@ regress_5<-lm(diff_mean_adj ~ mean95_mean, data=subset(allcases_figure_table, R!
 regress_6<-lm(diff_mean_adj ~ mean95_mean + R, data=subset(allcases_figure_table, R!=1e-04))
 
 ##############################################
+##### A few figures for the talk slides  #####
+##############################################
+
+# Mean rho, 2 loci, R<1e-05
+
+p_talk_median_2loc_R0<-ggplot(subset(two_locus_figure_table, R==0), aes(x=factor(HI_12), y=medianloci_mean-diff_mean, color=factor(HI_12))) +
+	geom_boxplot() +
+	geom_jitter(width=0.2) +
+	theme_minimal() +
+	theme(legend.position="none", axis.text.x=element_text(angle=45, hjust = 1)) +
+	labs(title="r=0", y="median\n 4Ner/kb", x="") +
+	NULL
+
+ggsave("Rec_talk_median_2locus_R0.pdf", height=4, width=8, units="in")
+
+p_talk_median_2loc_R8<-ggplot(subset(two_locus_figure_table, R==1e-08), aes(x=factor(HI_12), y=medianloci_mean-diff_mean, color=factor(HI_12))) +
+	geom_boxplot() +
+	geom_jitter(width=0.2) +
+	theme_minimal() +
+	theme(legend.position="none", axis.text.x=element_text(angle=45, hjust = 1)) +
+	labs(title="r=1e-08", y="", x="") +
+	NULL
+
+ggsave("Rec_talk_median_2locus_R08.pdf", height=4, width=8, units="in")
+
+p_talk_median_2loc_R7<-ggplot(subset(two_locus_figure_table, R==1e-07), aes(x=factor(HI_12), y=medianloci_mean-diff_mean, color=factor(HI_12))) +
+	geom_boxplot() +
+	geom_jitter(width=0.2) +
+	theme_minimal() +
+	theme(legend.position="none", axis.text.x=element_text(angle=45, hjust = 1)) +
+	labs(title="r=1e-07", y="median\n 4Ner/kb", x="s (locus1|locus2)") +
+	NULL
+
+ggsave("Rec_talk_median_2locus_R07.pdf", height=4, width=8, units="in")
+
+p_talk_median_2loc_R6<-ggplot(subset(two_locus_figure_table, R==1e-06), aes(x=factor(HI_12), y=medianloci_mean-diff_mean, color=factor(HI_12))) +
+	geom_boxplot() +
+	geom_jitter(width=0.2) +
+	theme_minimal() +
+	theme(legend.position="none", axis.text.x=element_text(angle=45, hjust = 1)) +
+	labs(title="r=1e-06", y="", x="s (locus1|locus2)") +
+	NULL
+
+ggsave("Rec_talk_median_2locus_R06.pdf", height=4, width=8, units="in")
+
+p_talk_median_2loc_R5<-ggplot(subset(two_locus_figure_table, R==1e-05), aes(x=factor(HI_12), y=medianloci_mean-diff_mean, color=factor(HI_12))) +
+	geom_boxplot() +
+	geom_jitter(width=0.2) +
+	theme_minimal() +
+	theme(legend.position="none", axis.text.x=element_text(angle=45, hjust = 1)) +
+	labs(title="r=1e-05", y="", x="s (locus1|locus2)") +
+	NULL
+
+ggsave("Rec_talk_median_2locus_R05.pdf", height=4, width=8, units="in")
+
+p_talk_median_2loc_R4<-ggplot(subset(two_locus_figure_table, R==1e-04), aes(x=factor(HI_12), y=medianloci_mean-diff_mean, color=factor(HI_12))) +
+	geom_boxplot() +
+	geom_jitter(width=0.2) +
+	theme_minimal() +
+	theme(legend.position="none", axis.text.x=element_text(angle=45, hjust = 1)) +
+	labs(title="r=1e-04", y="median \n 4Ner/kb", x="s (locus1|locus2)") +
+	NULL
+
+ggsave("Rec_talk_median_2locus_R04.pdf", height=4, width=8, units="in")
+
+ggarrange(p_talk_median_2loc_R0, p_talk_median_2loc_R8, p_talk_median_2loc_R7, p_talk_median_2loc_R6, nrow=2, ncol=2)
+
+ggsave("Talk_Figure_Boxplot_median.pdf", height=5, width=8, units="in")
+
+# diff, 2 loci, R<1e-05
+
+p_talk_diff_2loc_R0<-ggplot(subset(two_locus_figure_table, R==0), aes(x=factor(HI_12), y=-diff_mean, color=factor(HI_12))) +
+	geom_boxplot() +
+	geom_jitter(width=0.2) +
+	theme_minimal() +
+	theme(legend.position="none", axis.text.x=element_text(angle=45, hjust = 1)) +
+	labs(title="r=0", y="interlocus - background \n 4Ner/kb", x="") +
+	NULL
+
+ggsave("Rec_talk_diff_2locus_R0.pdf", height=4, width=8, units="in")
+
+p_talk_diff_2loc_R8<-ggplot(subset(two_locus_figure_table, R==1e-08), aes(x=factor(HI_12), y=-diff_mean, color=factor(HI_12))) +
+	geom_boxplot() +
+	geom_jitter(width=0.2) +
+	theme_minimal() +
+	theme(legend.position="none", axis.text.x=element_text(angle=45, hjust = 1)) +
+	labs(title="r=1e-08", y="", x="") +
+	NULL
+
+ggsave("Rec_talk_diff_2locus_R08.pdf", height=4, width=8, units="in")
+
+p_talk_diff_2loc_R7<-ggplot(subset(two_locus_figure_table, R==1e-07), aes(x=factor(HI_12), y=-diff_mean, color=factor(HI_12))) +
+	geom_boxplot() +
+	geom_jitter(width=0.2) +
+	theme_minimal() +
+	theme(legend.position="none", axis.text.x=element_text(angle=45, hjust = 1)) +
+	labs(title="r=1e-07", y="interlocus - background \n 4Ner/kb", x="s (locus1|locus2)") +
+	NULL
+
+ggsave("Rec_talk_diff_2locus_R07.pdf", height=4, width=8, units="in")
+
+p_talk_diff_2loc_R6<-ggplot(subset(two_locus_figure_table, R==1e-06), aes(x=factor(HI_12), y=-diff_mean, color=factor(HI_12))) +
+	geom_boxplot() +
+	geom_jitter(width=0.2) +
+	theme_minimal() +
+	theme(legend.position="none", axis.text.x=element_text(angle=45, hjust = 1)) +
+	labs(title="r=1e-06", y="", x="s (locus1|locus2)") +
+	NULL
+
+ggsave("Rec_talk_diff_2locus_R06.pdf", height=4, width=8, units="in")
+
+p_talk_diff_2loc_R5<-ggplot(subset(two_locus_figure_table, R==1e-05), aes(x=factor(HI_12), y=-diff_mean, color=factor(HI_12))) +
+	geom_boxplot() +
+	geom_jitter(width=0.2) +
+	theme_minimal() +
+	theme(legend.position="none", axis.text.x=element_text(angle=45, hjust = 1)) +
+	labs(title="r=1e-05", y="", x="s (locus1|locus2)") +
+	NULL
+
+ggsave("Rec_talk_diff_2locus_R05.pdf", height=4, width=8, units="in")
+
+p_talk_diff_2loc_R4<-ggplot(subset(two_locus_figure_table, R==1e-04), aes(x=factor(HI_12), y=-diff_mean, color=factor(HI_12))) +
+	geom_boxplot() +
+	geom_jitter(width=0.2) +
+	theme_minimal() +
+	theme(legend.position="none", axis.text.x=element_text(angle=45, hjust = 1)) +
+	labs(title="r=1e-04", y="interlocus - background \n 4Ner/kb", x="s (locus1|locus2)") +
+	NULL
+
+ggsave("Rec_talk_diff_2locus_R04.pdf", height=4, width=8, units="in")
+
+ggarrange(p_talk_diff_2loc_R0, p_talk_diff_2loc_R8, p_talk_diff_2loc_R7, p_talk_diff_2loc_R6, nrow=2, ncol=2)
+
+ggsave("Talk_Figure_Boxplot_diff.pdf", height=5, width=8, units="in")
+
+p_talk_diff_2loc_R6<-ggplot(subset(two_locus_figure_table, R==1e-06), aes(x=factor(HI_12), y=-diff_mean, color=factor(HI_12))) +
+	geom_boxplot() +
+	geom_jitter(width=0.2) +
+	theme_minimal() +
+	theme(legend.position="none", axis.text.x=element_text(angle=45, hjust = 1)) +
+	labs(title="r=1e-06", y="interlocus - background \n 4Ner/kb", x="") +
+	NULL
+
+ggsave("Rec_talk_diff_2locus_R06.pdf", height=4, width=8, units="in")
+
+p_talk_diff_2loc_R5<-ggplot(subset(two_locus_figure_table, R==1e-05), aes(x=factor(HI_12), y=-diff_mean, color=factor(HI_12))) +
+	geom_boxplot() +
+	geom_jitter(width=0.2) +
+	theme_minimal() +
+	theme(legend.position="none", axis.text.x=element_text(angle=45, hjust = 1)) +
+	labs(title="r=1e-05", y="interlocus - background \n 4Ner/kb", x="s (locus1|locus2)") +
+	NULL
+
+ggsave("Rec_talk_diff_2locus_R05.pdf", height=4, width=8, units="in")
+
+ggarrange(p_talk_diff_2loc_R6, p_talk_diff_2loc_R5, nrow=2)
+
+ggsave("Talk_Figure_Boxplot_diff_2.pdf", height=5, width=5, units="in")
+
+
+##############################################
 ##### Five recombination maps. Each one  #####
 ##### showing the recombination rate     #####
 ##### an example run with no selection,  #####
 ##### an example of the case with high-  #####
 ##### est diff with 1-locus selection,   #####
 ##### and an example of the 2-locus case #####
-##### with highest diff.    #####
+##### with highest diff.                 #####
 ##############################################
 
 # First, I pick the example cases by finding the highest diff (in magnitude, the sign I gave it is not intuitive) for each recombination rate
@@ -1204,6 +1367,7 @@ p_recmap_0<-ggplot(recmap_table_0, aes(x=Loci, y=value, color=L1)) +
 	NULL
 
 ggsave("Recmap_R0.pdf", height=4, width=8, units="in")
+
 
 
 

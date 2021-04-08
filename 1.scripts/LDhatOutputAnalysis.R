@@ -101,6 +101,6 @@ for(i in 1:itercount){
 Rates_diff<-Rates_median_mean_loci-Rates_median_mean_bg
 OutputTable<-data.frame(Rates_mean_mean_all=Rates_mean_mean_all, Rates_mean_SD_all=Rates_mean_SD_all, Rates_mean_CV_all=Rates_mean_CV_all, Rates_mean_mean_loci=Rates_mean_mean_loci, Rates_mean_SD_loci=Rates_mean_SD_loci, Rates_mean_CV_loci=Rates_mean_CV_loci, Rates_median_mean_all=Rates_median_mean_all, Rates_median_SD_all=Rates_median_SD_all, Rates_median_CV_all=Rates_median_CV_all, Rates_median_mean_loci=Rates_median_mean_loci, Rates_median_SD_loci=Rates_median_SD_loci, Rates_median_CV_loci=Rates_median_CV_loci, Rates_95range_mean_all=Rates_95range_mean_all, Rates_95range_SD_all=Rates_95range_SD_all, Rates_95range_CV_all=Rates_95range_CV_all, Rates_95range_mean_loci=Rates_95range_mean_loci, Rates_95range_SD_loci=Rates_95range_SD_loci, Rates_95range_CV_loci=Rates_95range_CV_loci, Rates_median_mean_bg=Rates_median_mean_bg, Rates_diff=Rates_diff)
 
-output_filename<-paste(filetemplate, ".res.summary.txt", sep='')
+output_filename<-paste(filetemplate, "2.res.summary.txt", sep='')
 
 write.table(OutputTable, output_filename, quote=FALSE)
